@@ -43,18 +43,12 @@ function displayBranches(){
   const branches = JSON.parse(this.responseText);
   console.log(branches)
   const branchList = `<ul>${branches.map(branch => '<li>' + branch.commit.url + '</li>').join('')}</ul>`
-  // const commitsList = `<ul>${commits
-  //   .map(
-  //     commit =>
-  //       '<li>' +
-  //       commit.commit.author.name + ' - ' + commit.commit.message + ' ' + commit.committer.login +
-  //       '</li>'
-  //   )
-  //   .join('')}</ul>`;
   document.getElementById('details').innerHTML = branchList;
 }
 
-function getBranches(){
+function getBranches(el){
+  const name = el.dataset.repository;
+
   const req = new XMLHttpRequest();
   req.addEventListener('load', displayBranches);
   req.open('GET', 'https://api.github.com/repos/octocat/' + name + '/branches');

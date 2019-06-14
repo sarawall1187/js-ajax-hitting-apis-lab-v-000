@@ -40,7 +40,7 @@ function getCommits(el) {
 function displayBranches(){
   const branches = JSON.parse(this.responseText); //// NEED HELP HERE
   console.log(branches)
-  const branchList = `<ul>${branches.map(branch => '<li>' + branch.commit.url + '</li>').join('')}</ul>`
+  const branchList = `<ul>${branches.map(branch => '<li>' + branch.name + '</li>').join('')}</ul>`;
   document.getElementById('details').innerHTML = branchList;
 }
 

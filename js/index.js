@@ -1,7 +1,6 @@
 // your code here
 function displayRepositories() {
   var repos = JSON.parse(this.responseText);
-  // console.log(repos);
   const repoList = `<ul>${repos
     .map(r => '<li>' + r.clone_url + '</li>')
     .join('')}</ul>`;
@@ -32,7 +31,6 @@ function displayCommits() {
 
 function getCommits(el) {
     const name = el.dataset.repository;
-
     const req = new XMLHttpRequest();
     req.addEventListener('load', displayCommits);
     req.open('GET', 'https://api.github.com/repos/octocat/' + name + '/commits');
@@ -40,18 +38,16 @@ function getCommits(el) {
 }
 
 function displayBranches(){
-  const branches = JSON.parse(this.responseText);
+  const branches = JSON.parse(this.responseText); //// NEED HELP HERE
   console.log(branches)
   const branchList = `<ul>${branches.map(branch => '<li>' + branch.commit.url + '</li>').join('')}</ul>`
   document.getElementById('details').innerHTML = branchList;
 }
 
 function getBranches(el){
-  const name = el.dataset.repository;
-
+  const name = el.dataset.repository; /// NEED HELP HERE
   const req = new XMLHttpRequest();
   req.addEventListener('load', displayBranches);
   req.open('GET', 'https://api.github.com/repos/octocat/' + name + '/branches');
   req.send();
-
 }
